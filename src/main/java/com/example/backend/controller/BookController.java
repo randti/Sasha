@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.entity.Book;
 import com.example.backend.repository.BookRepository;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3030")
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("http://localhost:3000/")
 public class BookController {
 	
 	private Logger logger = LoggerFactory.getLogger(BookController.class);
@@ -70,7 +70,7 @@ public class BookController {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+	@CrossOrigin("http://localhost:3000/")
 	@DeleteMapping("/Books/{id}")
 	public ResponseEntity<HttpStatus> deleteBook(@PathVariable("id") Long id) {
 		try {

@@ -12,6 +12,7 @@ import lombok.*;
 public class Book {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 	@Column(name = "name", nullable = false)
 	private String name;

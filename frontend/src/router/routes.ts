@@ -6,15 +6,17 @@ import Employees from '@/views/Teacher.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    name: 'list',
+    alias: '/list',
     component: () => import('@/views/List.vue'),
   },
   {
     path: '/add',
-    component: () => import('@/views/AddCustomer.vue'),
+    component: () => import('@/views/Add.vue'),
   },
   {
-    path: '/edit/:id',
-    component: () => import('@/views/EditCustomer.vue'),
+    path: '/books/:id',
+    component: () => import('@/views/Edit.vue'),
     props: (route) => {
       const id = Number.parseInt(route.params.id);
       return { id }

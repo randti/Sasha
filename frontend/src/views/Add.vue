@@ -2,20 +2,28 @@
     <div>
         <div v-if="!submitted">
             <div class="mb-3">
-                <label for="firstName" class="form-label">Name</label>
-                <input type="text" class="form-control" id="firstName" required name="firstName" v-model="book.name">
+                <label for="name" class="form-label">Название</label>
+                <input type="text" class="form-control" id="name" required name="name" v-model="book.name">
             </div>
             <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required name="lastName" v-model="book.author">
+                <label for="author" class="form-label">Автор</label>
+                <input type="text" class="form-control" id="author" required name="author" v-model="book.author">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required name="email" v-model="book.year">
+                <label for="year" class="form-label">Год издания</label>
+                <input type="text" class="form-control" id="year" required name="year" v-model="book.year">
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="phone" required name="phone" v-model="book.pages">
+                <label for="pages" class="form-label">Количество страниц</label>
+                <input type="text" class="form-control" id="pages" required name="pages" v-model="book.pages">
+            </div>
+            <div class="mb-3">
+              <label for="publishing" class="form-label">Место публикации</label>
+              <input type="text" class="form-control" id="publishing" required name="publishing" v-model="book.publishing">
+            </div>
+            <div class="mb-3">
+              <label for="link" class="form-label">Ссылка</label>
+              <input type="text" class="form-control" id="link" required name="link" v-model="book.link">
             </div>
             <div class="mb-3">
                 <button @click="saveBook" class="btn btn-primary">Submit</button>
@@ -55,15 +63,16 @@ export default {
                 author: this.book.author,
                 year: this.book.year,
                 pages: this.book.pages,
-                publishing:"",
-                link:""
+                publishing:this.book.publishing,
+                link:this.book.link
             }
             BookService.create(data)
                 .then(response => {
-                    this.customer.id = response.data.id
+                    this.book.id = response.data.id
                     this.submitted = true;
                 })
                 .catch( e => {
+                    console.log(e);
                     alert(e)
                 })
         },

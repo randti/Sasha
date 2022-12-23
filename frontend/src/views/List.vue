@@ -3,11 +3,13 @@
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Название</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Год издания</th>
+                <th scope="col">Количество страниц</th>
+                <th scope="col">Место публикации</th>
+                <th scope="col">Ссылка</th>
+                <th scope="col">Действие</th>
                 </tr>
             </thead>
             <tbody v-for="book in books" v-bind:key="book.id">
@@ -16,8 +18,11 @@
                     <td>{{book.author}}</td>
                     <td>{{book.year}}</td>
                     <td>{{book.pages}}</td>
+                    <td>{{book.publishing}}</td>
+                    <td><a :href="book.link">Загрузка</a></td>
                     <td><a :href="'/books/' + book.id" class="btn btn-primary">Edit</a></td>
                 </tr>
+
             </tbody>
         </table>
     </div>
@@ -36,7 +41,7 @@ export default {
     methods: {
         retrieveBooks() {
             BookService.getAll()
-                .then(response => {
+                .then((response) => {
                     this.books = response.data
                 })
                 .catch(e => {
