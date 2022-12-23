@@ -1,34 +1,42 @@
-<template>
-  <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <router-link to="/" class="navbar-brand">Customer Manager</router-link>
-        <div class="collapse navbar-collapse">
-          <div class="navbar-nav">
-            <router-link to="/customers" class="nav-link">Customer List</router-link>
-            <router-link to="/add" class="nav-link">Add New Customer</router-link>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div class="container">
-      <router-view />
-    </div>
-  </div>
-</template>
-<script>
-export default {
-  name: 'App'
-}
+<script setup lang="ts">
+import {RouterView} from 'vue-router'
+import Menu from '@/views/components/Menu.vue';
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<template>
+<div class="wrapper">
+
+    <div id="root">
+        <Menu class="menu" />
+        <RouterView class="router-view" />
+    </div>
+    <Footer/>
+
+</div>
+</template>
+
+<style lang="scss" >
+@import url(https://allfont.ru/allfont.css?fonts=franklin-gothic-medium-cond);
+
+.fon {
+    background-color: rgba(88, 86, 86, 0.1);
+    padding: 5%;
+    border-radius: 25px;
+    margin-bottom: 10%;
 }
+.text {
+    text-align: justify;
+    line-height: 1.3;
+    font-family: THovesProVariable,sans-serif;
+}
+
+.fon ul li{
+    list-style-type: circle;
+}
+
+a{
+    text-decoration: none;
+}
+
 </style>

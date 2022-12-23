@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.entity.Book;
 import com.example.backend.repository.BookRepository;
-
-@CrossOrigin(origins = "http://localhost:8081")
+import java.util.List;
+@CrossOrigin(origins = "http://localhost:3030")
 @RestController
 @RequestMapping("/api")
 public class BookController {
@@ -28,18 +28,12 @@ public class BookController {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	@GetMapping("/Books")
-	public ResponseEntity<Object> getAllBooks(){
-		try {
-			Iterable<Book> Books = bookRepository.findAll();
-			return new ResponseEntity<Object>(Books, HttpStatus.OK);
-		} catch(Exception ex) {
-			logger.error(ex.getMessage(), ex);
-			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-		}
+	@GetMapping("/books")
+	public List<Book> getBooks(){
+		return bookRepository.findAll();
 	}
 	
-	@GetMapping("/Books/{id}")
+	@GetMapping("/books/{id}")
 	public ResponseEntity<Object> getBookById(@PathVariable("id") Long id) {
 		try {
 			Book book = bookRepository.findById(id).get();
@@ -54,7 +48,7 @@ public class BookController {
 		}
 	}
 	
-	@PostMapping("/Books")
+	@PostMapping("/books")
 	public ResponseEntity<Object> createBook(@RequestBody Book book) {
 		try {
 			Book savedBook = bookRepository.save(book);
@@ -65,7 +59,7 @@ public class BookController {
 		}
 	}
 
-	@PutMapping("/Books/{id}")
+	@PutMapping("/books/{id}")
 	public ResponseEntity<Object> updateBook(@PathVariable("id") Long id, @RequestBody Book book) {
 		try {
 			book.setId(id);
